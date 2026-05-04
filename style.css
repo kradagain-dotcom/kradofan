@@ -20,11 +20,14 @@ body {
 
 #meta-signature {
     position: fixed;
-    bottom: 5px;
-    right: 5px;
-    font-size: 6px;
-    color: #1a1a1a; /* ОЧЕНЬ ТЕМНЫЙ ЦВЕТ — почти не виден */
+    bottom: 8px;
+    right: 8px;
+    font-size: 10px; /* Увеличили с 6px до 10px — теперь буквы четкие */
+    color: #333;    /* Сделали чуть светлее (был #1a1a1a). Теперь на черном фоне он виден, но не бросается в глаза */
+    font-family: 'Courier New', monospace;
     word-break: break-all;
-    max-width: 200px;
+    max-width: 280px;
+    text-align: right;
     pointer-events: none;
+    opacity: 0.6;   /* Добавили прозрачность, чтобы он выглядел как "водяной знак" */
 }
