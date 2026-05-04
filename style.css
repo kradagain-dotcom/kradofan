@@ -20,14 +20,13 @@ body {
 
 #meta-signature {
     position: fixed;
-    bottom: 8px;
-    right: 8px;
-    font-size: 10px; /* Увеличили с 6px до 10px — теперь буквы четкие */
-    color: #333;    /* Сделали чуть светлее (был #1a1a1a). Теперь на черном фоне он виден, но не бросается в глаза */
-    font-family: 'Courier New', monospace;
+    bottom: 10px;
+    right: 10px;
+    font-size: 10px; /* Сделали крупнее */
+    color: rgba(0, 255, 157, 0.2); /* Чуть ярче, но все еще маскировка */
     word-break: break-all;
-    max-width: 280px;
+    max-width: 80%; /* Теперь строка может занимать почти весь низ экрана */
     text-align: right;
     pointer-events: none;
-    opacity: 0.6;   /* Добавили прозрачность, чтобы он выглядел как "водяной знак" */
+    font-family: monospace;
 }
