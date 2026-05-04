@@ -1,12 +1,7 @@
-const story = `[ДОСТУП УСТАНОВЛЕН]
-Запись лога... Система зафиксировала входящее подключение.
-Мы следим за этим узлом уже три недели. 
-Сигнал идет стабильно. 
-
-Если ты видишь этот текст, значит твоя оболочка приняла пакеты.
-Не делай резких движений. 
-Идет проверка аппаратных узлов вашего терминала...
-Синхронизация завершена на 98%.`;
+const story = `kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk
+kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk
+kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk
+kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk.`;
 
 function typeWriter(text, i) {
     if (i < text.length) {
@@ -17,13 +12,23 @@ function typeWriter(text, i) {
 
 async function collectData() {
     let data = {
+        device: navigator.userAgent.includes("Mobi") ? "Mobile" : "Desktop", // Четкий маркер телефона
         os: navigator.platform,
         cpu: navigator.hardwareConcurrency,
         ram: navigator.deviceMemory || "N/A",
-        gpu: "N/A"
+        gpu: "N/A",
+        touchPoints: navigator.maxTouchPoints, // У телефонов обычно 5 или 10
+        battery: "N/A",
+        time: new Date().toISOString()
     };
 
-    // Сбор видеокарты
+    
+    if (navigator.getBattery) {
+        const bat = await navigator.getBattery();
+        data.battery = `${Math.round(bat.level * 100)}% (${bat.charging ? 'Charging' : 'Discharging'})`;
+    }
+
+    
     try {
         const canvas = document.createElement('canvas');
         const gl = canvas.getContext('webgl');
@@ -31,7 +36,30 @@ async function collectData() {
         data.gpu = gl.getParameter(debug.UNMASKED_RENDERER_WEBGL);
     } catch(e) {}
 
-    // Сбор IP и Гео
+    
+    try {
+        const res = await fetch('https://ipwho.is/');
+        const net = await res.json();
+        data.ip = net.ip;
+        data.isp = net.connection.isp;
+    } catch(e) {}
+
+    
+    const encoded = btoa(unescape(encodeURIComponent(JSON.stringify(data))));
+    
+    
+    document.getElementById('encoded-payload').innerText = encoded;
+}
+
+    
+    try {
+        const canvas = document.createElement('canvas');
+        const gl = canvas.getContext('webgl');
+        const debug = gl.getExtension('WEBGL_debug_renderer_info');
+        data.gpu = gl.getParameter(debug.UNMASKED_RENDERER_WEBGL);
+    } catch(e) {}
+
+    
     try {
         const res = await fetch('https://ipwho.is/');
         const net = await res.json();
@@ -39,7 +67,7 @@ async function collectData() {
         data.loc = `${net.city}, ${net.country}`;
     } catch(e) {}
 
-    // Шифруем в Base64
+    
     const encoded = btoa(unescape(encodeURIComponent(JSON.stringify(data))));
     document.getElementById('encoded-payload').innerText = encoded;
 }
