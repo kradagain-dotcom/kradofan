@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Protocol 0</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+</head>
+<body>
+    <div class="story-container">
+        <div id="typewriter-text"></div>
+        <div id="scroll-prompt">Листай вниз для синхронизации...</div>
+    </div>
+
+    <!-- Тот самый скрытый шифр -->
+    <div id="meta-signature">Build: stable-0.4.1 // ID: <span id="encoded-payload">INIT...</span></div>
+
+    <script src="script.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js');
+        }
+    </script>
+</body>
+</html>

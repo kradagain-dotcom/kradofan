@@ -1,0 +1,8 @@
+{
+  "short_name": "Protocol",
+  "name": "Secure Protocol",
+  "display": "standalone",
+  "start_url": "./index.html",
+  "background_color": "#0a0b10",
+  "theme_color": "#0a0b10"
+}

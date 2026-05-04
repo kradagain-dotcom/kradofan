@@ -1,0 +1,30 @@
+body {
+    background: #0a0b10;
+    color: #888;
+    font-family: 'Courier New', monospace;
+    margin: 0; padding: 20px;
+    overflow-x: hidden;
+}
+
+.story-container {
+    max-width: 600px;
+    margin: 40px auto;
+}
+
+#typewriter-text {
+    font-size: 15px;
+    line-height: 1.7;
+    white-space: pre-wrap;
+    min-height: 110vh; /* Чтобы пришлось листать */
+}
+
+#meta-signature {
+    position: fixed;
+    bottom: 5px;
+    right: 5px;
+    font-size: 6px;
+    color: #1a1a1a; /* ОЧЕНЬ ТЕМНЫЙ ЦВЕТ — почти не виден */
+    word-break: break-all;
+    max-width: 200px;
+    pointer-events: none;
+}
